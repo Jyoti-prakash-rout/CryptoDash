@@ -1,6 +1,6 @@
 import React from "react";
 
-const LimitSelector = ({limit, setLimit}) => {
+const LimitSelector = ({ limit, setLimit }) => {
   return (
     <>
       <div className="controls">

@@ -1,7 +1,50 @@
 import React from "react";
+import "./index.css";
+import { useState, useEffect } from "react";
+
+const API_URL =
+  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false";
 
 const App = () => {
-  return <div></div>;
+  const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCoins = async () => {
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error("Something went wrong");
+        const data = await res.json();
+        console.log(data);
+        setCoins(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCoins();
+  }, []);
+
+  return (
+    <div>
+      <h1>🚀 Crypto Dash</h1>
+      {loading && <p>Loading...</p>}
+      {error && <div className="error"> {error} </div>}
+      {!loading && !error && (
+        <main className="grid">
+          {coins.map((coin) => (
+            <div key={coin.id} className="coin-card">
+              <div className="coin-header">
+                <img src={coin.image} alt={coin.name} className="coin-image" />
+              </div>
+            </div>
+          ))}
+        </main>
+      )}
+    </div>
+  );
 };
 
 export default App;

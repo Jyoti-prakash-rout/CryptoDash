@@ -5,6 +5,7 @@ import FilterInput from "../components/FilterInput";
 import SortSelector from "../components/SortSelector";
 
 import { Link } from "react-router";
+import Spinner from "../components/Spinner";
 
 const Home = ({
   coins,
@@ -48,7 +49,12 @@ const Home = ({
           <h1>🚀 Crypto Dash</h1>
         </Link>
 
-        {loading && <p>Loading...</p>}
+        {loading && (
+          <p>
+            {" "}
+            <Spinner color="white" />{" "}
+          </p>
+        )}
         {error && <div className="error"> {error} </div>}
 
         <div className="top-controls">

@@ -4,7 +4,7 @@ import LimitSelector from "../components/LimitSelector";
 import FilterInput from "../components/FilterInput";
 import SortSelector from "../components/SortSelector";
 
-
+import { Link } from "react-router";
 
 const Home = ({
   coins,
@@ -16,8 +16,7 @@ const Home = ({
   setSortBy,
   loading,
   error,
-}) => { 
-	
+}) => {
   const filterdCoins = coins
     .filter((coin) => {
       return (
@@ -45,7 +44,10 @@ const Home = ({
   return (
     <>
       <div>
-        <h1>🚀 Crypto Dash</h1>
+        <Link to="/">
+          <h1>🚀 Crypto Dash</h1>
+        </Link>
+
         {loading && <p>Loading...</p>}
         {error && <div className="error"> {error} </div>}
 

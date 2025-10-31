@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Header from "./components/Header";
 import NotFound from "./pages/NotFound";
+import CoinDetails from "./pages/CoinDetails";
 
 import { Route, Routes } from "react-router";
 
@@ -56,7 +57,8 @@ const App = () => {
             />
           }></Route>
         <Route path="/about" element={<About />}></Route>
-        <Route path="/notfound" element={<NotFound />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
+        <Route path="/coins/:id" element={<CoinDetails />}></Route>
       </Routes>
     </>
   );
